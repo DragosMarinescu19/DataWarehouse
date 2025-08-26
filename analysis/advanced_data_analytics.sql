@@ -1,3 +1,23 @@
+select 
+FORMAT(order_date,'yyyy-MMM') as order_date,
+sum(sales_amount) as total_sales,
+count(distinct customer_key) as total_customers,
+sum(quantity) as total_quantity
+from gold.fact_sales
+where order_date is not null
+group by FORMAT(order_date,'yyyy-MMM')
+order by FORMAT(order_date,'yyyy-MMM')
+
+
+--How many customers were added each year
+select
+DATETRUNC(year,create_date) as create_date,
+COUNT(customer_key) as total_customer
+from gold.dim_customers
+group by DATETRUNC(year,create_date)
+order by DATETRUNC(year,create_date)
+
+
 --Cumulative analysis
 --Aggregate the data progressively over the time
 
