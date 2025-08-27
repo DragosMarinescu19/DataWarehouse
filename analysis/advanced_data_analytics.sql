@@ -44,3 +44,38 @@ group by DATETRUNC(year,order_date)
 )t
 
 
+--Analyze the yearly performance of products by comparing
+--their sales to both the avg sales performance of the product 
+--and the previous year's sales
+with yearly_product_sales as(
+select 
+YEAR(f.order_date) as order_year,
+p.product_name,
+sum(f.sales_amount) as curr_sales
+from gold.fact_sales f
+LEFT JOIN gold.dim_products p
+ON f.product_key=p.product_key
+where order_date is not null
+group by YEAR(f.order_date),p.product_name
+)
+select 
+order_year,
+product_name,
+curr_sales,
+avg(curr_sales) over(partition by product_name) as avg_sales,
+curr_sales-avg(curr_sales) over(partition by product_name) as diff_avg,
+CASE WHEN curr_sales-avg(curr_sales) over(partition by product_name)>0 THEN 'Above Avg'
+	 WHEN curr_sales-avg(curr_sales) over(partition by product_name)=0 THEN 'Average'
+	 ELSE 'Below Avg'
+END,
+LAG(curr_sales) over(partition by product_name order by order_year) as py_sales,
+curr_sales-LAG(curr_sales) over(partition by product_name order by order_year) as diff_py,
+CASE WHEN curr_sales-LAG(curr_sales) over(partition by product_name order by order_year)>0 THEN 'Increase'
+	 WHEN curr_sales-LAG(curr_sales) over(partition by product_name order by order_year)<0 THEN 'Decrease'
+	 ELSE 'No Change'
+END as py_change5
+from yearly_product_sales
+order by product_name,order_year
+
+
+
