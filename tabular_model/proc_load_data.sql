@@ -1,0 +1,133 @@
+CREATE OR ALTER PROCEDURE load_demo
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -------------------------------------
+    -- DIM CUSTOMER
+    -------------------------------------
+    INSERT INTO dim_customer (customer_id, customer_name, city, country)
+    SELECT TOP (100000)
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS customer_id,
+        CONCAT('Customer_', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
+        CONCAT('City_', ABS(CHECKSUM(NEWID())) % 1000),
+        CONCAT('Country_', ABS(CHECKSUM(NEWID())) % 100)
+    FROM sys.all_objects a CROSS JOIN sys.all_objects b;
+
+    -------------------------------------
+    -- DIM PRODUCT
+    -------------------------------------
+    INSERT INTO dim_product (product_id, product_name, category, brand)
+    SELECT TOP (100000)
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS product_id,
+        CONCAT('Product_', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
+        CONCAT('Category_', ABS(CHECKSUM(NEWID())) % 50),
+        CONCAT('Brand_', ABS(CHECKSUM(NEWID())) % 500)
+    FROM sys.all_objects a CROSS JOIN sys.all_objects b;
+
+    -------------------------------------
+    -- DIM TIME
+    -------------------------------------
+    INSERT INTO dim_time (time_id, full_date, year, quarter, month, day)
+    SELECT TOP (100000)
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS time_id,
+        DATEADD(DAY, ROW_NUMBER() OVER (ORDER BY (SELECT NULL)), '2000-01-01'),
+        YEAR(DATEADD(DAY, ROW_NUMBER() OVER (ORDER BY (SELECT NULL)), '2000-01-01')),
+        DATEPART(QUARTER, DATEADD(DAY, ROW_NUMBER() OVER (ORDER BY (SELECT NULL)), '2000-01-01')),
+        MONTH(DATEADD(DAY, ROW_NUMBER() OVER (ORDER BY (SELECT NULL)), '2000-01-01')),
+        DAY(DATEADD(DAY, ROW_NUMBER() OVER (ORDER BY (SELECT NULL)), '2000-01-01'))
+    FROM sys.all_objects a CROSS JOIN sys.all_objects b;
+
+    -------------------------------------
+    -- DIM STORE
+    -------------------------------------
+    INSERT INTO dim_store (store_id, store_name, city, country)
+    SELECT TOP (100000)
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS store_id,
+        CONCAT('Store_', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
+        CONCAT('City_', ABS(CHECKSUM(NEWID())) % 1000),
+        CONCAT('Country_', ABS(CHECKSUM(NEWID())) % 100)
+    FROM sys.all_objects a CROSS JOIN sys.all_objects b;
+
+    -------------------------------------
+    -- DIM EMPLOYEE
+    -------------------------------------
+    INSERT INTO dim_employee (employee_id, employee_name, position, hire_date)
+    SELECT TOP (100000)
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS employee_id,
+        CONCAT('Employee_', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
+        CONCAT('Position_', ABS(CHECKSUM(NEWID())) % 20),
+        DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 5000, GETDATE())
+    FROM sys.all_objects a CROSS JOIN sys.all_objects b;
+
+    -------------------------------------
+    -- DIM SUPPLIER
+    -------------------------------------
+    INSERT INTO dim_supplier (supplier_id, supplier_name, country)
+    SELECT TOP (100000)
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS supplier_id,
+        CONCAT('Supplier_', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
+        CONCAT('Country_', ABS(CHECKSUM(NEWID())) % 100)
+    FROM sys.all_objects a CROSS JOIN sys.all_objects b;
+
+    -------------------------------------
+    -- DIM CURRENCY
+    -------------------------------------
+    INSERT INTO dim_currency (currency_id, currency_code, currency_name)
+    SELECT TOP (100000)
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS currency_id,
+        CONCAT('C', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
+        CONCAT('Currency_', ROW_NUMBER() OVER (ORDER BY (SELECT NULL)))
+    FROM sys.all_objects a CROSS JOIN sys.all_objects b;
+
+    -------------------------------------
+    -- DIM PROMOTION
+    -------------------------------------
+    INSERT INTO dim_promotion (promotion_id, promotion_name, discount_percent)
+    SELECT TOP (100000)
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS promotion_id,
+        CONCAT('Promo_', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
+        CAST(ABS(CHECKSUM(NEWID())) % 50 AS DECIMAL(5,2))
+    FROM sys.all_objects a CROSS JOIN sys.all_objects b;
+
+    -------------------------------------
+    -- DIM CHANNEL
+    -------------------------------------
+    INSERT INTO dim_channel (channel_id, channel_name)
+    SELECT TOP (100000)
+        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS channel_id,
+        CONCAT('Channel_', ROW_NUMBER() OVER (ORDER BY (SELECT NULL)))
+    FROM sys.all_objects a CROSS JOIN sys.all_objects b;
+
+    -------------------------------------
+    -- FACT SALES (50,000,000 rows in batches)
+    -------------------------------------
+    DECLARE @i INT = 0;
+    WHILE @i < 500
+    BEGIN
+        INSERT INTO fact_sales (
+            sales_id, customer_id, product_id, time_id, store_id, employee_id,
+            supplier_id, currency_id, promotion_id, channel_id,
+            quantity, sales_amount, cost_amount
+        )
+        SELECT TOP (100000)
+            (@i * 100000) + ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS sales_id,
+            ABS(CHECKSUM(NEWID())) % 100000 + 1,
+            ABS(CHECKSUM(NEWID())) % 100000 + 1,
+            ABS(CHECKSUM(NEWID())) % 100000 + 1,
+            ABS(CHECKSUM(NEWID())) % 100000 + 1,
+            ABS(CHECKSUM(NEWID())) % 100000 + 1,
+            ABS(CHECKSUM(NEWID())) % 100000 + 1,
+            ABS(CHECKSUM(NEWID())) % 100000 + 1,	
+            ABS(CHECKSUM(NEWID())) % 100000 + 1,
+            ABS(CHECKSUM(NEWID())) % 100000 + 1,
+            ABS(CHECKSUM(NEWID())) % 100 + 1,
+            CAST(ABS(CHECKSUM(NEWID())) % 1000 AS DECIMAL(18,2)),
+            CAST(ABS(CHECKSUM(NEWID())) % 800 AS DECIMAL(18,2))
+        FROM sys.all_objects a CROSS JOIN sys.all_objects b;
+
+        SET @i += 1;
+    END
+END;
+GO
+exec load_demo
