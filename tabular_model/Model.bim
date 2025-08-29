@@ -1,0 +1,1094 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1200,
+  "model": {
+    "culture": "ro-RO",
+    "dataSources": [
+      {
+        "name": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2",
+        "connectionString": "Provider=SQLOLEDB;Data Source=LAPTOP-977424O9\\SQLDEVELOPER;Integrated Security=SSPI;Persist Security Info=false;Initial Catalog=DataWarehouse2",
+        "impersonationMode": "impersonateAccount",
+        "account": "laptop-977424o9\\marin",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "dim_channel",
+        "columns": [
+          {
+            "name": "channel_id",
+            "dataType": "int64",
+            "sourceColumn": "channel_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "channel_name",
+            "dataType": "string",
+            "sourceColumn": "channel_name",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_channel",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[dim_channel].*   FROM [dbo].[dim_channel] ",
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[dim_channel].*   FROM [dbo].[dim_channel] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "dim_channel"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "dim_currency",
+        "columns": [
+          {
+            "name": "currency_id",
+            "dataType": "int64",
+            "sourceColumn": "currency_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "currency_code",
+            "dataType": "string",
+            "sourceColumn": "currency_code",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "currency_name",
+            "dataType": "string",
+            "sourceColumn": "currency_name",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_currency",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[dim_currency].*   FROM [dbo].[dim_currency] ",
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[dim_currency].*   FROM [dbo].[dim_currency] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "dim_currency"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "dim_customer",
+        "columns": [
+          {
+            "name": "customer_id",
+            "dataType": "int64",
+            "sourceColumn": "customer_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "customer_name",
+            "dataType": "string",
+            "sourceColumn": "customer_name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "city",
+            "dataType": "string",
+            "sourceColumn": "city",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "country",
+            "dataType": "string",
+            "sourceColumn": "country",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_customer",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[dim_customer].*   FROM [dbo].[dim_customer] ",
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[dim_customer].*   FROM [dbo].[dim_customer] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "dim_customer"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "dim_employee",
+        "columns": [
+          {
+            "name": "employee_id",
+            "dataType": "int64",
+            "sourceColumn": "employee_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "employee_name",
+            "dataType": "string",
+            "sourceColumn": "employee_name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "position",
+            "dataType": "string",
+            "sourceColumn": "position",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "hire_date",
+            "dataType": "string",
+            "sourceColumn": "hire_date",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_employee",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[dim_employee].*   FROM [dbo].[dim_employee] ",
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[dim_employee].*   FROM [dbo].[dim_employee] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "dim_employee"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "dim_product",
+        "columns": [
+          {
+            "name": "product_id",
+            "dataType": "int64",
+            "sourceColumn": "product_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "product_name",
+            "dataType": "string",
+            "sourceColumn": "product_name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "category",
+            "dataType": "string",
+            "sourceColumn": "category",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "brand",
+            "dataType": "string",
+            "sourceColumn": "brand",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_product",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[dim_product].*   FROM [dbo].[dim_product] ",
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[dim_product].*   FROM [dbo].[dim_product] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "dim_product"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "dim_promotion",
+        "columns": [
+          {
+            "name": "promotion_id",
+            "dataType": "int64",
+            "sourceColumn": "promotion_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "promotion_name",
+            "dataType": "string",
+            "sourceColumn": "promotion_name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "discount_percent",
+            "dataType": "double",
+            "sourceColumn": "discount_percent",
+            "sourceProviderType": "Numeric"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_promotion",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[dim_promotion].*   FROM [dbo].[dim_promotion] ",
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[dim_promotion].*   FROM [dbo].[dim_promotion] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "dim_promotion"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "dim_store",
+        "columns": [
+          {
+            "name": "store_id",
+            "dataType": "int64",
+            "sourceColumn": "store_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "store_name",
+            "dataType": "string",
+            "sourceColumn": "store_name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "city",
+            "dataType": "string",
+            "sourceColumn": "city",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "country",
+            "dataType": "string",
+            "sourceColumn": "country",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_store",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[dim_store].*   FROM [dbo].[dim_store] ",
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[dim_store].*   FROM [dbo].[dim_store] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "dim_store"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "dim_supplier",
+        "columns": [
+          {
+            "name": "supplier_id",
+            "dataType": "int64",
+            "sourceColumn": "supplier_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "supplier_name",
+            "dataType": "string",
+            "sourceColumn": "supplier_name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "country",
+            "dataType": "string",
+            "sourceColumn": "country",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_supplier",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[dim_supplier].*   FROM [dbo].[dim_supplier] ",
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[dim_supplier].*   FROM [dbo].[dim_supplier] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "dim_supplier"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "dim_time",
+        "columns": [
+          {
+            "name": "time_id",
+            "dataType": "int64",
+            "sourceColumn": "time_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "full_date",
+            "dataType": "string",
+            "sourceColumn": "full_date",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "year",
+            "dataType": "int64",
+            "sourceColumn": "year",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "quarter",
+            "dataType": "int64",
+            "sourceColumn": "quarter",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "month",
+            "dataType": "int64",
+            "sourceColumn": "month",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "day",
+            "dataType": "int64",
+            "sourceColumn": "day",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "dim_time",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[dim_time].*   FROM [dbo].[dim_time] ",
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "maxdt",
+            "expression": "max(dim_time[full_date])",
+            "formatString": "dddd, d MMMM yyyy",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"DateTimeCustom\"><DateTimes><DateTime LCID=\"1048\" Group=\"LongDate\" FormatString=\"dddd, d MMMM yyyy\" /></DateTimes></Format>"
+              }
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[dim_time].*   FROM [dbo].[dim_time] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "dim_time"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "fact_sales",
+        "columns": [
+          {
+            "name": "sales_id",
+            "dataType": "int64",
+            "sourceColumn": "sales_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "customer_id",
+            "dataType": "int64",
+            "sourceColumn": "customer_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "product_id",
+            "dataType": "int64",
+            "sourceColumn": "product_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "time_id",
+            "dataType": "int64",
+            "sourceColumn": "time_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "store_id",
+            "dataType": "int64",
+            "sourceColumn": "store_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "employee_id",
+            "dataType": "int64",
+            "sourceColumn": "employee_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "supplier_id",
+            "dataType": "int64",
+            "sourceColumn": "supplier_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "currency_id",
+            "dataType": "int64",
+            "sourceColumn": "currency_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "promotion_id",
+            "dataType": "int64",
+            "sourceColumn": "promotion_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "channel_id",
+            "dataType": "int64",
+            "sourceColumn": "channel_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "quantity",
+            "dataType": "int64",
+            "sourceColumn": "quantity",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "sales_amount",
+            "dataType": "double",
+            "sourceColumn": "sales_amount",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "cost_amount",
+            "dataType": "double",
+            "sourceColumn": "cost_amount",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "type": "calculated",
+            "name": "profit",
+            "dataType": "double",
+            "isDataTypeInferred": true,
+            "expression": "fact_sales[sales_amount]-fact_sales[cost_amount]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "timePartition1",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT",
+                "    fs.*",
+                "FROM",
+                "    dbo.fact_sales AS fs",
+                "INNER JOIN",
+                "    dbo.dim_time AS dt ON fs.time_id = dt.time_id",
+                "WHERE",
+                "    dt.[year] >= 2000 AND dt.[year] <= 2004;"
+              ],
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            },
+            "annotations": [
+              {
+                "name": "QueryEditorSerialization",
+                "value": [
+                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>SELECT",
+                  "    fs.*",
+                  "FROM",
+                  "    dbo.fact_sales AS fs",
+                  "INNER JOIN",
+                  "    dbo.dim_time AS dt ON fs.time_id = dt.time_id",
+                  "WHERE",
+                  "    dt.[year] >= 2000 AND dt.[year] <= 2004;</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "timePartition2",
+            "mode": "import",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT",
+                "    fs.*",
+                "FROM",
+                "    dbo.fact_sales AS fs",
+                "INNER JOIN",
+                "    dbo.dim_time AS dt ON fs.time_id = dt.time_id",
+                "WHERE",
+                "    dt.[year] >= 2004 AND dt.[year] <= 2008;"
+              ],
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            },
+            "annotations": [
+              {
+                "name": "QueryEditorSerialization",
+                "value": [
+                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>SELECT",
+                  "    fs.*",
+                  "FROM",
+                  "    dbo.fact_sales AS fs",
+                  "INNER JOIN",
+                  "    dbo.dim_time AS dt ON fs.time_id = dt.time_id",
+                  "WHERE",
+                  "    dt.[year] >= 2004 AND dt.[year] <= 2008;</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "timePartition3",
+            "mode": "import",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT",
+                "    fs.*",
+                "FROM",
+                "    dbo.fact_sales AS fs",
+                "INNER JOIN\t",
+                "    dbo.dim_time AS dt ON fs.time_id = dt.time_id",
+                "WHERE",
+                "    dt.[year] >= 2008 AND dt.[year] <= 2015;"
+              ],
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            },
+            "annotations": [
+              {
+                "name": "QueryEditorSerialization",
+                "value": [
+                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>SELECT",
+                  "    fs.*",
+                  "FROM",
+                  "    dbo.fact_sales AS fs",
+                  "INNER JOIN\t",
+                  "    dbo.dim_time AS dt ON fs.time_id = dt.time_id",
+                  "WHERE",
+                  "    dt.[year] >= 2008 AND dt.[year] <= 2015;</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+                ]
+              }
+            ]
+          },
+          {
+            "name": "timePartition4",
+            "mode": "import",
+            "source": {
+              "type": "query",
+              "query": [
+                "SELECT",
+                "    fs.*",
+                "FROM",
+                "    dbo.fact_sales AS fs",
+                "INNER JOIN",
+                "    dbo.dim_time AS dt ON fs.time_id = dt.time_id",
+                "WHERE",
+                "    dt.[year] >= 2015"
+              ],
+              "dataSource": "SqlServer LAPTOP-977424O9SQLDEVELOPER DataWarehouse2"
+            },
+            "annotations": [
+              {
+                "name": "QueryEditorSerialization",
+                "value": [
+                  "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>SELECT",
+                  "    fs.*",
+                  "FROM",
+                  "    dbo.fact_sales AS fs",
+                  "INNER JOIN",
+                  "    dbo.dim_time AS dt ON fs.time_id = dt.time_id",
+                  "WHERE",
+                  "    dt.[year] >= 2015</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+                ]
+              }
+            ]
+          }
+        ],
+        "measures": [
+          {
+            "name": "TotalSales",
+            "expression": "SUM(fact_sales[sales_amount])",
+            "formatString": "#,0.00 \"lei\";-#,0.00 \"lei\";#,0.00 \"lei\"",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1048\" DisplayName=\"lei Romanian (Romania)\" Symbol=\"lei\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "TotalQuantity",
+            "expression": "SUM(fact_sales[quantity])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "AvgDiscount",
+            "expression": "AVERAGE(dim_promotion[discount_percent])",
+            "formatString": "0.00 %;-0.00 %;0.00 %"
+          },
+          {
+            "name": "AvgSales",
+            "expression": "AVERAGE(fact_sales[sales_amount])"
+          },
+          {
+            "name": "AllProfit",
+            "expression": "SUM(fact_sales[profit])",
+            "formatString": "#,0.00"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[fact_sales].*   FROM [dbo].[fact_sales] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "fact_sales"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          },
+          {
+            "name": "QueryEditorSerialization",
+            "value": [
+              "<?xml version=\"1.0\" encoding=\"UTF-16\"?><Gemini xmlns=\"QueryEditorSerialization\"><AnnotationContent><![CDATA[<RSQueryCommandText>SELECT",
+              "    fs.*",
+              "FROM",
+              "    dbo.fact_sales AS fs",
+              "INNER JOIN",
+              "    dbo.dim_time AS dt ON fs.time_id = dt.time_id",
+              "WHERE",
+              "    dt.[year] >= 2000 AND dt.[year] <= 2004;</RSQueryCommandText><RSQueryCommandType>Text</RSQueryCommandType><RSQueryDesignState></RSQueryDesignState>]]></AnnotationContent></Gemini>"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CalculatedTable 1",
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "employee_name",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "dim_employee[employee_name]"
+          },
+          {
+            "type": "calculatedTableColumn",
+            "name": "position",
+            "dataType": "string",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "dim_employee[position]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": "SUMMARIZE(dim_employee,dim_employee[employee_name],dim_employee[position])"
+            }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "4d582c1e-ca34-4be5-836c-e37ff04d478a",
+        "fromTable": "fact_sales",
+        "fromColumn": "channel_id",
+        "toTable": "dim_channel",
+        "toColumn": "channel_id"
+      },
+      {
+        "name": "b01e05df-a9e9-4cca-8d19-27be85047c12",
+        "fromTable": "fact_sales",
+        "fromColumn": "currency_id",
+        "toTable": "dim_currency",
+        "toColumn": "currency_id"
+      },
+      {
+        "name": "0bd4e9d1-5327-464e-8a9e-638554beb579",
+        "fromTable": "fact_sales",
+        "fromColumn": "customer_id",
+        "toTable": "dim_customer",
+        "toColumn": "customer_id"
+      },
+      {
+        "name": "80748139-7ab6-4e32-a07e-5de5c710264f",
+        "fromTable": "fact_sales",
+        "fromColumn": "employee_id",
+        "toTable": "dim_employee",
+        "toColumn": "employee_id"
+      },
+      {
+        "name": "6d1b3b47-ad0d-4d92-bbc8-6370b0b89ca1",
+        "fromTable": "fact_sales",
+        "fromColumn": "product_id",
+        "toTable": "dim_product",
+        "toColumn": "product_id"
+      },
+      {
+        "name": "338cb885-1476-4d32-a5ca-a95741615fab",
+        "fromTable": "fact_sales",
+        "fromColumn": "promotion_id",
+        "toTable": "dim_promotion",
+        "toColumn": "promotion_id"
+      },
+      {
+        "name": "46323193-3ec7-4b86-9d82-d3e2d38cb7df",
+        "fromTable": "fact_sales",
+        "fromColumn": "store_id",
+        "toTable": "dim_store",
+        "toColumn": "store_id"
+      },
+      {
+        "name": "5e66d616-a2ec-4b3b-bc24-7bbca2110905",
+        "fromTable": "fact_sales",
+        "fromColumn": "supplier_id",
+        "toTable": "dim_supplier",
+        "toColumn": "supplier_id"
+      },
+      {
+        "name": "aa906a29-c9d1-48b7-936c-26e51896afe7",
+        "fromTable": "fact_sales",
+        "fromColumn": "time_id",
+        "toTable": "dim_time",
+        "toColumn": "time_id"
+      }
+    ],
+    "perspectives": [
+      {
+        "name": "Sales",
+        "tables": [
+          {
+            "name": "dim_product",
+            "columns": [
+              {
+                "name": "brand"
+              },
+              {
+                "name": "category"
+              },
+              {
+                "name": "product_id"
+              },
+              {
+                "name": "product_name"
+              }
+            ]
+          },
+          {
+            "name": "fact_sales",
+            "columns": [
+              {
+                "name": "channel_id"
+              },
+              {
+                "name": "cost_amount"
+              },
+              {
+                "name": "currency_id"
+              },
+              {
+                "name": "customer_id"
+              },
+              {
+                "name": "employee_id"
+              },
+              {
+                "name": "product_id"
+              },
+              {
+                "name": "profit"
+              },
+              {
+                "name": "promotion_id"
+              },
+              {
+                "name": "quantity"
+              },
+              {
+                "name": "sales_amount"
+              },
+              {
+                "name": "sales_id"
+              },
+              {
+                "name": "store_id"
+              },
+              {
+                "name": "supplier_id"
+              },
+              {
+                "name": "time_id"
+              }
+            ],
+            "measures": [
+              {
+                "name": "AllProfit"
+              },
+              {
+                "name": "AvgDiscount"
+              },
+              {
+                "name": "AvgSales"
+              },
+              {
+                "name": "TotalQuantity"
+              },
+              {
+                "name": "TotalSales"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Customer",
+        "tables": [
+          {
+            "name": "dim_currency",
+            "columns": [
+              {
+                "name": "currency_code"
+              },
+              {
+                "name": "currency_id"
+              },
+              {
+                "name": "currency_name"
+              }
+            ]
+          },
+          {
+            "name": "dim_customer",
+            "columns": [
+              {
+                "name": "city"
+              },
+              {
+                "name": "country"
+              },
+              {
+                "name": "customer_id"
+              },
+              {
+                "name": "customer_name"
+              }
+            ]
+          },
+          {
+            "name": "fact_sales",
+            "columns": [
+              {
+                "name": "channel_id"
+              },
+              {
+                "name": "cost_amount"
+              },
+              {
+                "name": "currency_id"
+              },
+              {
+                "name": "customer_id"
+              },
+              {
+                "name": "employee_id"
+              },
+              {
+                "name": "product_id"
+              },
+              {
+                "name": "profit"
+              },
+              {
+                "name": "promotion_id"
+              },
+              {
+                "name": "quantity"
+              },
+              {
+                "name": "sales_amount"
+              },
+              {
+                "name": "sales_id"
+              },
+              {
+                "name": "store_id"
+              },
+              {
+                "name": "supplier_id"
+              },
+              {
+                "name": "time_id"
+              }
+            ],
+            "measures": [
+              {
+                "name": "AllProfit"
+              },
+              {
+                "name": "AvgDiscount"
+              },
+              {
+                "name": "AvgSales"
+              },
+              {
+                "name": "TotalQuantity"
+              },
+              {
+                "name": "TotalSales"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "roles": [
+      {
+        "name": "TestRole",
+        "modelPermission": "read",
+        "members": [
+          {
+            "memberName": "TestUser",
+            "memberId": "S-1-5-21-1158751838-2102143251-3039313230-1025"
+          }
+        ],
+        "tablePermissions": [
+          {
+            "name": "fact_sales",
+            "filterExpression": "fact_sales[sales_amount]"
+          }
+        ]
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "400"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
