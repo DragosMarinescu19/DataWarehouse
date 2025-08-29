@@ -1,0 +1,47 @@
+-- Vanzari totale pe categorie
+EVALUATE
+SUMMARIZECOLUMNS(
+    dim_product[category],
+    "TotalSales", SUM(fact_sales[sales_amount])
+)
+
+-- Vanzari totale pe an si luna
+EVALUATE
+SUMMARIZECOLUMNS(
+    dim_time[year],
+    dim_time[month],
+    "TotalSales", SUM(fact_sales[sales_amount])
+)
+
+EVALUATE
+    SUMMARIZECOLUMNS(
+        dim_customer[customer_name],
+        "TotalSales", SUM(fact_sales[sales_amount]),
+        "TotalQuantity", SUM(fact_sales[quantity]),
+        "AvgSales", AVERAGE(fact_sales[sales_amount]) 
+    )
+ORDER BY
+    [TotalSales] DESC
+
+
+EVALUATE
+SUMMARIZECOLUMNS(
+    dim_time[year],
+    dim_time[month],
+    "AvgQuantity", AVERAGE(fact_sales[quantity])
+)
+
+EVALUATE
+SUMMARIZECOLUMNS(
+    dim_channel[channel_name],
+    "TotalSales", SUM(fact_sales[sales_amount]),
+    "AvgSales", AVERAGE(fact_sales[sales_amount])
+) ORDER BY dim_channel[channel_name],SUM(fact_sales[sales_amount]) DESC
+
+
+
+
+
+
+
+
