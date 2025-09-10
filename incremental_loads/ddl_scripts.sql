@@ -1,4 +1,19 @@
 -- Dimensiuni
+create table dim_customer_scd3
+(
+	customer_id int primary key,
+	prev_customer_name nvarchar(100) null,
+	curr_customer_name nvarchar(100) not null,
+	prev_city nvarchar(100) null,
+	curr_city nvarchar(100) not null,
+	prev_country nvarchar(100) null,
+	curr_country nvarchar(100) not null,
+	from_date datetime not null default GETDATE()
+)
+insert into dim_customer_scd3(customer_id,prev_customer_name,curr_customer_name,prev_city,curr_city,prev_country,curr_country)
+select customer_id,null, customer_name,null, city,null, country from staging_customer
+--SCD3
+
 create table dim_customer_scd2 (
 	customer_key int identity primary key ,
 	customer_id int not null,
