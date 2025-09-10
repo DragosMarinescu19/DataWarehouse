@@ -1,4 +1,25 @@
 -- Dimensiuni
+
+create table dim_customer_scd6(
+	customer_key int identity primary key,
+	customer_id int not null,
+	curr_customer_name nvarchar(100) not null,
+	hist_customer_name nvarchar(100) null default null,
+	curr_city nvarchar(100) not null,
+	hist_city nvarchar(100) null default null,
+	curr_country nvarchar(100) not null,
+	hist_country nvarchar(100) null default null,
+	[start_date] datetime not null default GETDATE(),
+	end_date datetime null default null,
+	is_active bit default 1
+);
+insert into dim_customer_scd6(customer_id,curr_customer_name,hist_customer_name,curr_city,hist_city,curr_country,hist_country,
+start_date,end_date,is_active) 
+		select distinct scd3.customer_id,scd3.curr_customer_name,scd3.prev_customer_name,scd3.curr_city,scd3.prev_city,
+scd3.curr_country,scd3.prev_country,scd2.start_date,scd2.end_date,scd2.is_active  
+from dim_customer_scd3 scd3 left join dim_customer_scd2 scd2 on scd2.customer_id=scd3.customer_id
+--SCD6
+
 create table dim_customer_scd3
 (
 	customer_id int primary key,
