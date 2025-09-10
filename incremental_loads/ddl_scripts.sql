@@ -1,4 +1,19 @@
 -- Dimensiuni
+create table dim_customer_scd2 (
+	customer_key int identity primary key ,
+	customer_id int not null,
+	customer_name nvarchar(100),
+	city nvarchar(50),
+	country nvarchar(50),
+	[start_date] date not null default getdate(),
+	[end_date] date null default null,
+	is_active bit default 1
+)
+go
+insert into dim_customer_scd2(customer_id,customer_name,city,country) select * from dim_customer
+select * from dim_customer_scd2
+--SCD2
+
 CREATE TABLE staging_customer (
     customer_id INT PRIMARY KEY,
     customer_name NVARCHAR(100),
