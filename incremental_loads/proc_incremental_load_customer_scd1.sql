@@ -1,4 +1,4 @@
-create or alter procedure incremental_load_customer --SCD1
+create or alter procedure incremental_load_customer_scd1 --SCD1
 as
 begin
 set nocount on;
@@ -49,7 +49,7 @@ set nocount on;
 
 end;
 go
-exec incremental_load_customer
+exec incremental_load_customer_scd1
 
 go
 select * from log_table
