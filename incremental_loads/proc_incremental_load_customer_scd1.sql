@@ -56,5 +56,5 @@ select * from log_table
 
 select * from dim_customer where customer_id=1
 select * from staging_customer  --asta trebuie rulat ca exemplu pt a demonstra
-insert into staging_customer(customer_id,customer_name,city,country) values(1002,'New_customer2','city2','country2');
-update staging_customer set customer_name='New_customer3' where customer_id=1
+insert into staging_customer(customer_id,customer_name,city,country) values(1004,'New_customer4','city4','country4');
+update staging_customer set customer_name='New_customer7' where customer_id=1
