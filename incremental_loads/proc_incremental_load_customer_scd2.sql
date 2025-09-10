@@ -65,5 +65,5 @@ select * from log_table
 
 select * from dim_customer_scd2 
 select * from staging_customer  --asta trebuie rulat ca exemplu pt a demonstra
-insert into staging_customer(customer_id,customer_name,city,country) values(1003,'New_customer3','city3','country3');
-update staging_customer set customer_name='New_customer5' where customer_id=1 -- se pastreaza istoricul
+insert into staging_customer(customer_id,customer_name,city,country) values(1004,'New_customer4','city4','country4');
+update staging_customer set customer_name='New_customer7' where customer_id=1 -- se pastreaza istoricul
