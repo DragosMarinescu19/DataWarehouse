@@ -30,7 +30,7 @@ set nocount on;
 	end try
 
 	begin catch
-		if @@TRANCOUNT>0 rollback
+		rollback
 		set @error_message=ERROR_MESSAGE()
 		insert into log_table select 'Error - incremental load : '+@error_message,'fact_sales',0,0;
 	end catch
