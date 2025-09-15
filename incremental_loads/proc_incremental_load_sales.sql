@@ -46,6 +46,6 @@ insert into staging_sales(sales_id, customer_id, product_id, store_id, employee_
             supplier_id, currency_id, promotion_id, channel_id, quantity, sales_amount, cost_amount)
 			select(select max(sales_id) +1 from fact_sales),13,100,345,890,1000,1,1,234,456,678,90;
 
-select max(sales_id) from staging_sales
-select max(sales_id) from fact_sales
+select * from staging_sales where sales_id=(select max(sales_id) from staging_sales)
+select * from fact_sales where sales_id=(select max(sales_id) from fact_sales)
 	
