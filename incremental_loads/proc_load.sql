@@ -101,18 +101,24 @@ BEGIN
     ('Munich', 'Germany'),
     ('Madrid', 'Spain'),
     ('Barcelona', 'Spain');
+    WITH Numbers AS (
+        SELECT TOP (1000) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS n
+        FROM master..spt_values
+    ),
+    RandomCity AS (
+        SELECT 
+            n,
+            ABS(CHECKSUM(NEWID())) % (SELECT COUNT(*) FROM @CityCountry) + 1 AS CityID
+        FROM Numbers
+    )
     INSERT INTO staging_customer (customer_id, customer_name, city, country)
-    SELECT TOP (1000)
-        ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS customer_id,
-        CONCAT('Customer_', NEWID()) AS customer_name,
-        T1.CityName AS city,
-        T1.CountryName AS country
-    FROM 
-        (SELECT TOP 1000 * FROM @CityCountry ORDER BY NEWID()) AS T1 
-        CROSS JOIN 
-        sys.all_objects AS a 
-        CROSS JOIN 
-        sys.all_objects AS b;
+    SELECT 
+        r.n AS customer_id,
+        CONCAT('Customer_', r.n) AS customer_name,
+        c.CityName,
+        c.CountryName
+    FROM RandomCity r
+    JOIN @CityCountry c ON r.CityID = c.CityID;
 
 
     -------------------------------------
