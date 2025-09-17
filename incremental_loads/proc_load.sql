@@ -82,13 +82,37 @@ BEGIN
 	-------------------------------------
     -- STAGE CUSTOMER(DIMENSION)
     -------------------------------------
+    DECLARE @CityCountry TABLE (
+        CityName NVARCHAR(100),
+        CountryName NVARCHAR(100)
+    );
+
+    INSERT INTO @CityCountry (CityName, CountryName) VALUES
+    ('Bucharest', 'Romania'),
+    ('Cluj-Napoca', 'Romania'),
+    ('Timisoara', 'Romania'),
+    ('Budapest', 'Hungary'),
+    ('Debrecen', 'Hungary'),
+    ('Vienna', 'Austria'),
+    ('Salzburg', 'Austria'),
+    ('Paris', 'France'),
+    ('Lyon', 'France'),
+    ('Berlin', 'Germany'),
+    ('Munich', 'Germany'),
+    ('Madrid', 'Spain'),
+    ('Barcelona', 'Spain');
     INSERT INTO staging_customer (customer_id, customer_name, city, country)
     SELECT TOP (1000)
         ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS customer_id,
-        CONCAT('Customer_', ROW_NUMBER() OVER (ORDER BY (SELECT NULL))),
-        CONCAT('City_', ABS(CHECKSUM(NEWID())) % 1000),
-        CONCAT('Country_', ABS(CHECKSUM(NEWID())) % 100)
-    FROM sys.all_objects a CROSS JOIN sys.all_objects b;
+        CONCAT('Customer_', NEWID()) AS customer_name,
+        T1.CityName AS city,
+        T1.CountryName AS country
+    FROM 
+        (SELECT TOP 1000 * FROM @CityCountry ORDER BY NEWID()) AS T1 
+        CROSS JOIN 
+        sys.all_objects AS a 
+        CROSS JOIN 
+        sys.all_objects AS b;
 
 
     -------------------------------------
