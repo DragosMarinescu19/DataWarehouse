@@ -15,7 +15,7 @@ set nocount on;
 	begin try	
 		begin transaction
 			insert into fact_sales select sales_id, customer_id, product_id, store_id, employee_id,
-					supplier_id, currency_id, promotion_id, channel_id, quantity, sales_amount, cost_amount 
+					supplier_id, currency_id, promotion_id, channel_id, quantity, sales_amount, cost_amount,time_id
 						from staging_sales where last_modified>@LastWatermark
 
 			set @rows_inserted=@@ROWCOUNT;
