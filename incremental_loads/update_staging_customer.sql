@@ -38,8 +38,8 @@ BEGIN
         FROM staging_customer
         ORDER BY NEWID()
     ) t
-    JOIN staging_customer sc ON sc.customer_id = t.customer_id
-    CROSS APPLY (
+    JOIN staging_customer sc ON sc.customer_id = t.customer_id --join specifica exact ce randuri sa actualizeze
+    CROSS APPLY ( --se aplica pentru fiecare din cele 100 de randuri
         SELECT TOP 1 CityName, CountryName
         FROM @CityCountry
         ORDER BY NEWID()
