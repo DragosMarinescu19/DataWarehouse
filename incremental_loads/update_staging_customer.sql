@@ -7,7 +7,7 @@ BEGIN
     SET NOCOUNT ON;
 
     DECLARE @CityCountry TABLE (
-        CityID INT IDENTITY(1,1) PRIMARY KEY,
+        CityID INT IDENTITY PRIMARY KEY,
         CityName NVARCHAR(100),
         CountryName NVARCHAR(100)
     );
