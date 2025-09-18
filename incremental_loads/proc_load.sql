@@ -16,6 +16,26 @@ BEGIN
         CONCAT('Brand_', ABS(CHECKSUM(NEWID())) % 500)
     FROM sys.all_objects a CROSS JOIN sys.all_objects b;
 
+	-------------------------------------
+    -- DIM TIME
+    -------------------------------------
+	
+	with RandomDates as(
+	select top (1000) CAST(DATEADD(DAY, ABS(CHECKSUM(NEWID())) % 3650 --adauga maxim 10 ani
+	 , '2015-01-01')  AS DATE) AS RandomDate
+	 FROM sys.all_objects a
+     CROSS JOIN sys.all_objects b
+	)
+	INSERT INTO dim_time (time_id,full_date,year,quarter,month,day)
+	SELECT 
+			ROW_NUMBER() OVER (ORDER BY RandomDate) as time_id,
+			RandomDate,
+			YEAR(RandomDate),
+			DATEPART(QUARTER,RandomDate),
+			MONTH(RandomDate),
+			DAY(RandomDate)
+	FROM RandomDates
+	order by RandomDate
     
 
     -------------------------------------
